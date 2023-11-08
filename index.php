@@ -1,3 +1,37 @@
+<?php
+if (isset($_POST['calculate'])) {
+    $number1 = floatval($_POST['number1']);
+    $number2 = floatval($_POST['number2']);
+    $historyEntry = "";
+
+    if (isset($_POST['add'])) {
+        $result = $number1 + $number2;
+        $historyEntry .= "$number1 + $number2 = $result\n";
+    }
+    if (isset($_POST['subtract'])) {
+        $result = $number1 - $number2;
+        $historyEntry .= "$number1 - $number2 = $result\n";
+    }
+    if (isset($_POST['multiply'])) {
+        $result = $number1 * $number2;
+        $historyEntry .= "$number1 * $number2 = $result\n";
+    }
+    if (isset($_POST['divide'])) {
+        if ($number2 != 0) {
+            $result = $number1 / $number2;
+            $historyEntry .= "$number1 / $number2 = $result\n";
+        } else {
+            $result = "Помилка: ділення на нуль";
+            $historyEntry .= "$number1 / $number2 = Помилка: ділення на нуль\n";
+        }
+    }
+
+    file_put_contents('history.txt', $historyEntry, FILE_APPEND);
+} else {
+    $result = "";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,8 +41,8 @@
     </head>
     <body>
         <body>
-            <h1>Калькулятор, який виконує найпростіші арифметичні дії</h1>
-            <form action="calculator.php" method="post">
+            <h1>Калькулятор</h1>
+            <form action="index.php" method="post">
                 <input type="text" name="number1" placeholder="Перше число" />
                 <input type="text" name="number2" placeholder="Друге число" />
                 <br />
@@ -27,6 +61,14 @@
                 <br />
                 <input type="submit" name="calculate" value="Обчислити" />
             </form>
+            <h2>Результат:</h2>
+            <p>
+                <?php
+                    if (isset($result)) {
+                        echo "Результат: $result";
+                    }
+                ?>
+            </p>
             <h2>Історія обчислень:</h2>
             <textarea cols="30" rows="10" style="resize:none" readonly >
                 <?php
