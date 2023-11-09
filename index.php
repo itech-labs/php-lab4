@@ -30,7 +30,8 @@
                 break;
         }
 
-        file_put_contents('history.txt', $historyEntry, FILE_APPEND);
+        $historyContent = file_get_contents('history.txt');
+        file_put_contents('history.txt', $historyEntry . $historyContent);
     } else {
         $result = "";
     }
