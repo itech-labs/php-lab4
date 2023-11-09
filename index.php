@@ -1,35 +1,39 @@
 <?php
-if (isset($_POST['calculate'])) {
-    $number1 = floatval($_POST['number1']);
-    $number2 = floatval($_POST['number2']);
-    $historyEntry = "";
+    if (isset($_POST['calculate']) && $_POST['number1'] != "" && $_POST['number2'] != "" && isset($_POST['operation'])) {
+        $number1 = floatval($_POST['number1']);
+        $number2 = floatval($_POST['number2']);
+        $historyEntry = "";
 
-    if (isset($_POST['add'])) {
-        $result = $number1 + $number2;
-        $historyEntry .= "$number1 + $number2 = $result\n";
-    }
-    if (isset($_POST['subtract'])) {
-        $result = $number1 - $number2;
-        $historyEntry .= "$number1 - $number2 = $result\n";
-    }
-    if (isset($_POST['multiply'])) {
-        $result = $number1 * $number2;
-        $historyEntry .= "$number1 * $number2 = $result\n";
-    }
-    if (isset($_POST['divide'])) {
-        if ($number2 != 0) {
-            $result = $number1 / $number2;
-            $historyEntry .= "$number1 / $number2 = $result\n";
-        } else {
-            $result = "Помилка: ділення на нуль";
-            $historyEntry .= "$number1 / $number2 = Помилка: ділення на нуль\n";
+        $operation = $_POST['operation'];
+
+        switch ($operation) {
+            case 'add':
+                $result = $number1 + $number2;
+                $historyEntry .= "$number1 + $number2 = $result\n";
+                break;
+            case 'subtract':
+                $result = $number1 - $number2;
+                $historyEntry .= "$number1 - $number2 = $result\n";
+                break;
+            case 'multiply':
+                $result = $number1 * $number2;
+                $historyEntry .= "$number1 * $number2 = $result\n";
+                break;
+            case 'divide':
+                if ($number2 != 0) {
+                    $result = $number1 / $number2;
+                    $historyEntry .= "$number1 / $number2 = $result\n";
+                } else {
+                    $result = "Помилка: ділення на нуль";
+                    $historyEntry .= "$number1 / $number2 = $result\n";
+                }
+                break;
         }
-    }
 
-    file_put_contents('history.txt', $historyEntry, FILE_APPEND);
-} else {
-    $result = "";
-}
+        file_put_contents('history.txt', $historyEntry, FILE_APPEND);
+    } else {
+        $result = "";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -47,16 +51,16 @@ if (isset($_POST['calculate'])) {
                 <input type="text" name="number2" placeholder="Друге число" />
                 <br />
                 <label for="add">+</label>
-                <input type="checkbox" name="add" value="add" id="add" />
+                <input type="radio" name="operation" value="add" id="add" />
 
                 <label for="subtract">-</label>
-                <input type="checkbox" name="subtract" value="subtract" id="subtract" />
+                <input type="radio" name="operation" value="subtract" id="subtract" />
 
                 <label for="multiply">*</label>
-                <input type="checkbox" name="multiply" value="multiply" id="multiply"/>
+                <input type="radio" name="operation" value="multiply" id="multiply"/>
 
                 <label for="divide">/</label>
-                <input type="checkbox" name="divide" value="divide" id="divide"/>
+                <input type="radio" name="operation" value="divide" id="divide"/>
 
                 <br />
                 <input type="submit" name="calculate" value="Обчислити" />
@@ -64,7 +68,7 @@ if (isset($_POST['calculate'])) {
             <h2>Результат:</h2>
             <p>
                 <?php
-                    if (isset($result)) {
+                    if (isset($result) && $result != "") {
                         echo "Результат: $result";
                     }
                 ?>
