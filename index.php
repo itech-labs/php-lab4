@@ -1,5 +1,5 @@
 <?php
-    if (isset($_POST['calculate']) && $_POST['number1'] != "" && $_POST['number2'] != "" && isset($_POST['operation'])) {
+    if (isset($_POST['calculate'])) {
         $number1 = floatval($_POST['number1']);
         $number2 = floatval($_POST['number2']);
         $historyEntry = "";
@@ -49,26 +49,26 @@
         <body>
             <h1>Калькулятор</h1>
             <form action="index.php" method="post">
-                <input type="text" name="number1" placeholder="Перше число" />
+                <input type="text" name="number1" placeholder="Перше число" pattern="[-+]?[0-9]+" required/>
                 <div class="operations">
                 <div>
-                    <input type="radio" name="operation" value="add" id="add" />
+                    <input type="radio" name="operation" value="add" id="add" required/>
                     <label for="add">+</label>
                 </div>
                 <div>
-                    <input type="radio" name="operation" value="subtract" id="subtract" />
+                    <input type="radio" name="operation" value="subtract" id="subtract" required/>
                     <label for="subtract">-</label>
                 </div>
                 <div>
-                    <input type="radio" name="operation" value="multiply" id="multiply"/>
+                    <input type="radio" name="operation" value="multiply" id="multiply" required/>
                     <label for="multiply">*</label>
                 </div>
                 <div>
-                    <input type="radio" name="operation" value="divide" id="divide"/>
+                    <input type="radio" name="operation" value="divide" id="divide" required/>
                     <label for="divide">/</label>
                 </div>
             </div>
-                <input type="text" name="number2" placeholder="Друге число" />
+                <input type="text" name="number2" placeholder="Друге число" pattern="[-+]?[0-9]+" required/>
                 <input type="submit" name="calculate" value="Обчислити" />
             </form>
             <h2>Результат:</h2>
@@ -80,7 +80,7 @@
                 ?>
             </p>
             <h2>Історія обчислень:</h2>
-            <textarea cols="30" rows="10" style="resize:none" readonly >
+            <textarea cols="50" rows="10" style="resize:none" readonly >
                 <?php
                     echo file_get_contents('history.txt');
                 ?>
