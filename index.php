@@ -72,13 +72,7 @@
                 <input type="submit" name="calculate" value="Обчислити" />
             </form>
             <h2>Результат:</h2>
-            <p>
-                <?php
-                    if (isset($result) && $result != "") {
-                        echo "Результат: $result";
-                    }
-                ?>
-            </p>
+            <input type='text' readonly <?php echo "value='$result'"?>/>
             <h2>Історія обчислень:</h2>
             <textarea cols="50" rows="10" style="resize:none" readonly >
                 <?php
