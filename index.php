@@ -46,11 +46,10 @@
         <title>Lab 4: PHP</title>
     </head>
     <body>
-        <body>
-            <h1>Калькулятор</h1>
-            <form action="index.php" method="post">
-                <input type="text" name="number1" placeholder="Перше число" pattern="^-?\d*\.?\d+$" required/>
-                <div class="operations">
+        <h1>Калькулятор</h1>
+        <form action="index.php" method="post">
+            <input type="text" name="number1" placeholder="Перше число" pattern="^-?\d*\.?\d+$" required/>
+            <div class="operations">
                 <div>
                     <input type="radio" name="operation" value="add" id="add" required/>
                     <label for="add">+</label>
@@ -68,17 +67,18 @@
                     <label for="divide">/</label>
                 </div>
             </div>
-                <input type="text" name="number2" placeholder="Друге число" pattern="^-?\d*\.?\d+$" required/>
-                <input type="submit" name="calculate" value="Обчислити" />
-            </form>
-            <h2>Результат:</h2>
-            <input type='text' readonly <?php echo "value='$result'"?>/>
-            <h2>Історія обчислень:</h2>
-            <textarea cols="50" rows="10" style="resize:none" readonly >
-                <?php
-                    echo file_get_contents('history.txt');
-                ?>
-            </textarea>
-        </body>
+            <input type="text" name="number2" placeholder="Друге число" pattern="^-?\d*\.?\d+$" required/>
+            <input type="submit" name="calculate" value="Обчислити" />
+        </form>
+
+        <h2>Результат:</h2>
+        <input type='text' readonly <?php echo "value='$result'"?>/>
+
+        <h2>Історія обчислень:</h2>
+        <textarea cols="60" rows="10" readonly >
+            <?php
+                echo file_get_contents('history.txt');
+            ?>
+        </textarea>
     </body>
 </html>
