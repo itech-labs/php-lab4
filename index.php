@@ -49,7 +49,7 @@
         <body>
             <h1>Калькулятор</h1>
             <form action="index.php" method="post">
-                <input type="text" name="number1" placeholder="Перше число" pattern="[-+]?[0-9]+" required/>
+                <input type="text" name="number1" placeholder="Перше число" pattern="^-?\d*\.?\d+$" required/>
                 <div class="operations">
                 <div>
                     <input type="radio" name="operation" value="add" id="add" required/>
@@ -68,7 +68,7 @@
                     <label for="divide">/</label>
                 </div>
             </div>
-                <input type="text" name="number2" placeholder="Друге число" pattern="[-+]?[0-9]+" required/>
+                <input type="text" name="number2" placeholder="Друге число" pattern="^-?\d*\.?\d+$" required/>
                 <input type="submit" name="calculate" value="Обчислити" />
             </form>
             <h2>Результат:</h2>
