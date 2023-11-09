@@ -41,6 +41,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style.css">
         <title>Lab 4: PHP</title>
     </head>
     <body>
@@ -48,21 +49,25 @@
             <h1>Калькулятор</h1>
             <form action="index.php" method="post">
                 <input type="text" name="number1" placeholder="Перше число" />
+                <div class="operations">
+                <div>
+                    <input type="radio" name="operation" value="add" id="add" />
+                    <label for="add">+</label>
+                </div>
+                <div>
+                    <input type="radio" name="operation" value="subtract" id="subtract" />
+                    <label for="subtract">-</label>
+                </div>
+                <div>
+                    <input type="radio" name="operation" value="multiply" id="multiply"/>
+                    <label for="multiply">*</label>
+                </div>
+                <div>
+                    <input type="radio" name="operation" value="divide" id="divide"/>
+                    <label for="divide">/</label>
+                </div>
+            </div>
                 <input type="text" name="number2" placeholder="Друге число" />
-                <br />
-                <label for="add">+</label>
-                <input type="radio" name="operation" value="add" id="add" />
-
-                <label for="subtract">-</label>
-                <input type="radio" name="operation" value="subtract" id="subtract" />
-
-                <label for="multiply">*</label>
-                <input type="radio" name="operation" value="multiply" id="multiply"/>
-
-                <label for="divide">/</label>
-                <input type="radio" name="operation" value="divide" id="divide"/>
-
-                <br />
                 <input type="submit" name="calculate" value="Обчислити" />
             </form>
             <h2>Результат:</h2>

@@ -1,0 +1,24 @@
+.operations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px 0 5px;
+}
+
+.operations div {
+    width: 22px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.operations input[type="radio"] {
+    margin: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
